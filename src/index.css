@@ -6,56 +6,63 @@
 
 @layer base {
   :root {
-    --background: 222 47% 4%;
-    --foreground: 210 40% 95%;
+    /* Softer deep navy — not pitch black, inspired by Elite eXceed */
+    --background: 220 35% 11%;
+    --foreground: 30 25% 96%;
 
-    --card: 222 47% 7%;
-    --card-foreground: 210 40% 95%;
+    --card: 220 30% 15%;
+    --card-foreground: 30 25% 96%;
 
-    --popover: 222 47% 7%;
-    --popover-foreground: 210 40% 95%;
+    --popover: 220 30% 15%;
+    --popover-foreground: 30 25% 96%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 4%;
+    /* Cool blue primary stays for tech feel */
+    --primary: 210 95% 65%;
+    --primary-foreground: 220 35% 11%;
 
-    --secondary: 192 91% 43%;
-    --secondary-foreground: 222 47% 4%;
+    --secondary: 188 90% 50%;
+    --secondary-foreground: 220 35% 11%;
 
-    --muted: 222 30% 12%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 220 25% 20%;
+    --muted-foreground: 30 15% 72%;
 
-    --accent: 260 60% 55%;
-    --accent-foreground: 210 40% 95%;
+    /* Warm amber/cream accent — the "Elite eXceed" warmth */
+    --accent: 38 92% 62%;
+    --accent-foreground: 220 35% 11%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 30 25% 96%;
 
-    --border: 222 30% 15%;
-    --input: 222 30% 15%;
-    --ring: 217 91% 60%;
+    --border: 220 25% 24%;
+    --input: 220 25% 22%;
+    --ring: 210 95% 65%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
-    --sidebar-background: 222 47% 5%;
-    --sidebar-foreground: 210 40% 95%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 222 47% 4%;
-    --sidebar-accent: 222 30% 12%;
-    --sidebar-accent-foreground: 210 40% 95%;
-    --sidebar-border: 222 30% 15%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-background: 220 35% 13%;
+    --sidebar-foreground: 30 25% 96%;
+    --sidebar-primary: 210 95% 65%;
+    --sidebar-primary-foreground: 220 35% 11%;
+    --sidebar-accent: 220 25% 20%;
+    --sidebar-accent-foreground: 30 25% 96%;
+    --sidebar-border: 220 25% 24%;
+    --sidebar-ring: 210 95% 65%;
 
-    --gradient-blue: 217 91% 60%;
-    --gradient-cyan: 192 91% 43%;
-    --gradient-purple: 260 60% 55%;
-    --glass-bg: 222 47% 8%;
-    --glass-border: 222 30% 18%;
+    --gradient-blue: 210 95% 65%;
+    --gradient-cyan: 188 90% 50%;
+    --gradient-amber: 38 92% 62%;
+    --glass-bg: 220 30% 16%;
+    --glass-border: 220 25% 28%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+  }
+
+  html, body {
+    overflow-x: clip;
   }
 
   body {
@@ -70,15 +77,44 @@
 
 @layer utilities {
   .glass {
-    @apply bg-card/60 backdrop-blur-xl border border-glass-border;
+    @apply bg-card/55 backdrop-blur-xl border border-glass-border;
   }
 
   .glass-strong {
     @apply bg-card/80 backdrop-blur-2xl border border-glass-border;
   }
 
+  .glass-warm {
+    background: linear-gradient(135deg, hsl(var(--card) / 0.7), hsl(var(--muted) / 0.4));
+    @apply backdrop-blur-xl border border-glass-border;
+  }
+
   .gradient-text {
     @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  .gradient-text-warm {
+    @apply bg-gradient-to-r from-accent via-accent to-primary bg-clip-text text-transparent;
+  }
+
+  .image-mask-bottom {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  .image-mask-radial {
+    -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
+    mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
+  }
+
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   .gradient-border {
