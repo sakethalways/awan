@@ -66,7 +66,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { Icon: Mail, text: "info@awansolutions.com" },
-                { Icon: MapPin, text: "www.awansolutions.com" },
+                { Icon: MapPin, text: "2336 Base Burner Path, Leander, Texas - 78641" },
               ].map(({ Icon, text }) => (
                 <li key={text} className="flex items-center gap-2.5 text-sm text-muted-foreground">
                   <Icon className="w-4 h-4 text-primary/70 shrink-0" />

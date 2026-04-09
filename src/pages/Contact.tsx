@@ -138,7 +138,7 @@ const Contact = () => {
                   <div className="space-y-4">
                     {[
                       { icon: Mail, label: "Email", value: "info@awansolutions.com" },
-                      { icon: MapPin, label: "Website", value: "www.awansolutions.com" },
+                      { icon: MapPin, label: "Address", value: "2336 Base Burner Path, Leander, Texas - 78641" },
                     ].map(({ icon: Icon, label, value }) => (
                       <div key={label} className="flex items-start gap-3">
                         <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center shrink-0">
