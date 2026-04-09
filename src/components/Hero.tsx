@@ -172,7 +172,7 @@ const Hero = () => {
               variant="outline"
               size="sm"
               data-hero="cta"
-              className="w-auto sm:!h-11 sm:!px-7 sm:!text-base border-border bg-card/50 backdrop-blur-sm hover:bg-card/70 hover:border-accent/40 font-medium"
+              className="w-auto sm:!h-11 sm:!px-7 sm:!text-base border-border bg-card/50 backdrop-blur-sm hover:bg-card/70 hover:border-accent/40 font-medium text-foreground hover:text-foreground"
             >
               <Link to="/services">Explore Services</Link>
             </Button>
