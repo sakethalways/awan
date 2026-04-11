@@ -38,24 +38,29 @@ const WhyAwan = () => {
         );
       }
 
-      /* ---------- Content flip — slow, scrub-driven 3-stage timeline ---------- */
+      /* ---------- Depth emerge + blur zoom, scrub 3-stage timeline ----------
+         Stage 1 — content emerges from depth with blur (scale 0.5, blur 24px, z -600 → 0)
+         Stage 2 — held at rest, fully clear and in focus
+         Stage 3 — zooms past the viewer (scale 1.35, blur 18px, z 250 → gone)        */
       if (prefersReducedMotion()) {
-        gsap.set(contentRef.current, { opacity: 1, rotateY: 0, scale: 1, x: 0 });
+        gsap.set(contentRef.current, { opacity: 1, scale: 1, filter: "blur(0px)", z: 0 });
         return;
       }
 
       if (isMobile()) {
         gsap.fromTo(
           contentRef.current,
-          { opacity: 0, y: 40 },
+          { opacity: 0, y: 40, scale: 0.95, filter: "blur(8px)" },
           {
             opacity: 1,
             y: 0,
-            duration: 0.9,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1,
             ease: "power2.out",
             scrollTrigger: {
               trigger: contentRef.current,
-              start: "top 85%",
+              start: "top 90%",
               toggleActions: "play none none none",
             },
           }
@@ -72,30 +77,46 @@ const WhyAwan = () => {
         },
       });
 
+      // Stage 1 — emerge from depth
       tl.fromTo(
         contentRef.current,
-        { rotateY: -110, opacity: 0, scale: 0.82, x: 120 },
         {
-          rotateY: 0,
+          opacity: 0,
+          scale: 0.5,
+          z: -600,
+          y: 80,
+          rotateX: 15,
+          filter: "blur(24px)",
+        },
+        {
           opacity: 1,
           scale: 1,
-          x: 0,
+          z: 0,
+          y: 0,
+          rotateX: 0,
+          filter: "blur(0px)",
           ease: "power3.out",
           duration: 1.4,
         }
       )
+        // Stage 2 — hold fully visible at rest
         .to(contentRef.current, {
-          rotateY: 0,
           opacity: 1,
           scale: 1,
-          x: 0,
+          z: 0,
+          y: 0,
+          rotateX: 0,
+          filter: "blur(0px)",
           duration: 1.4,
         })
+        // Stage 3 — zoom forward past the viewer + blur
         .to(contentRef.current, {
-          rotateY: 110,
           opacity: 0,
-          scale: 0.82,
-          x: -120,
+          scale: 1.35,
+          z: 250,
+          y: -60,
+          rotateX: -12,
+          filter: "blur(18px)",
           ease: "power3.in",
           duration: 1.4,
         });

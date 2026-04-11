@@ -68,7 +68,7 @@ const services = [
     title: "Cloud Transformation",
     tagline: "Migrate, Modernize, and Maximize Your Cloud Investment",
     desc: "Our cloud practice helps organizations move from legacy infrastructure to agile, cost-efficient, and secure cloud environments across AWS, Azure, and GCP — with minimal disruption.",
-    image: "/hazel-z-FocSgUZ10JM-unsplash.jpg",
+    image: "/Cloud%20system.jpg",
     color: "from-primary to-secondary",
     capabilities: [
       "Cloud Strategy & Migration",
