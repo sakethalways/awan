@@ -6,6 +6,8 @@ import { gsap, prefersReducedMotion } from "@/hooks/useGsap";
 
 const slides = [
   "/richard-horvath-cPccYbPrF-A-unsplash.jpg",
+  "/back1.jpg",
+  "/back2.jpg",
   "/igor-omilaev-gVQLAbGVB6Q-unsplash.jpg",
 ];
 
